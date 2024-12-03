@@ -1,10 +1,16 @@
 ---
 import Home from '../layouts/Home.astro';
+import Nav from '../components/Nav.astro';
+
+const pageTitle = 'Home';
 ---
 
-<Home pageTitle="Home">
+<Home pageTitle={pageTitle}>
   <div class="hero">
-    <h1 class="hero__text">doug's <span>thoughts</span></h1>
+    <div class="hero-content">
+      <h1 class="hero__text">doug's <span>thoughts</span></h1>
+      <Nav pageTitle={pageTitle} />
+    </div>
   </div>
 </Home>
 
@@ -15,6 +21,10 @@ import Home from '../layouts/Home.astro';
     place-content: center;
     padding: 5rem;
     box-shadow: inset 0 0 5rem 0 black;
+  }
+
+  .hero-content {
+    position: relative;
   }
 
   .hero__text {

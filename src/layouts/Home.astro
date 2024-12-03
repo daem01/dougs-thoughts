@@ -19,7 +19,7 @@ const { pageTitle } = Astro.props;
   </head>
   <body data-title={pageTitle}>
     <div class="wrapper">
-      <header>
+      <!-- <header>
         <a href="#" class="header-icon__link" title="Portfolio">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ const { pageTitle } = Astro.props;
         </a>
 
         <Nav />
-      </header>
+      </header> -->
       <div>
         <slot />
       </div>
@@ -54,10 +54,14 @@ const { pageTitle } = Astro.props;
   .wrapper {
     min-height: 100dvh;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 1fr;
   }
 
-  header {
+  .nav {
+    position: absolute;
+  }
+
+  /* header {
     position: sticky;
     top: 0;
     left: 0;
@@ -69,7 +73,7 @@ const { pageTitle } = Astro.props;
     padding-inline: 5rem;
     background-color: azure;
     box-shadow: 0 2px 10px 0 #00000088;
-  }
+  } */
 </style>
 
 <style is:global>
