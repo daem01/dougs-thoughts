@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "post-1.md",
+                "file": "post-3.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "post-1"
+              "title": "post-3"
             }
           }
         ]
@@ -164,8 +164,8 @@
   },
   "active": "2527187a92ebd65b",
   "lastOpenFiles": [
-    "post-3.md",
     "post-2.md",
+    "post-3.md",
     "post-1.md"
   ]
 }
