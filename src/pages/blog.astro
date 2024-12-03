@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const posts = await import.meta.glob('./posts/*.md');
 ---
 
 <Base pageTitle="Blog">
@@ -14,3 +16,10 @@ import Base from '../layouts/Base.astro';
     </nav>
   </div>
 </Base>
+
+<script>
+  const posts = await import.meta.glob('./posts/*.md');
+  for (const path in posts) {
+    posts[path]().then(mod => console.log(path, mod));
+  }
+</script>
