@@ -9,3 +9,47 @@
     <li><a href="/blog">Blog</a></li>
   </ul>
 </nav>
+
+<style>
+  nav {
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+
+      li {
+        display: block;
+
+        a {
+          position: relative;
+          font-family: "sriracha";
+          text-decoration: none;
+          color: black;
+          font-size: 1.3rem;
+
+          transition: color 150ms ease;
+
+          &:hover {
+            color: slategray;
+
+            &::after {
+              width: 100%;
+            }
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: black;
+
+            transition: width 215ms ease;
+          }
+        }
+      }
+    }
+  }
+</style>

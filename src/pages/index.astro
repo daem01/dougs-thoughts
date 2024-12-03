@@ -3,5 +3,39 @@ import Base from "../layouts/Base.astro";
 ---
 
 <Base pageTitle="Home">
-  <h1>Welcome to the Blog!!</h1>
+  <div class="hero">
+    <h1 class="hero__text">doug's <span>thoughts</span></h1>
+  </div>
 </Base>
+
+<style>
+  .hero {
+    height: 100%;
+    display: grid;
+    place-content: center;
+    padding: 5rem;
+    box-shadow: inset 0 0 5rem 0 black;
+  }
+
+  .hero__text {
+    --text-color: rgb(240, 230, 140);
+
+    font-size: 25vw;
+    font-family: "josefin sans";
+    text-align: right;
+    user-select: none;
+    color: var(--text-color);
+    line-height: 0.5;
+    text-shadow:
+      0 0 2rem rgba(240, 230, 140, 0.75),
+      2rem 2rem 12px black,
+      -2rem 2rem 4rem black,
+      0.65rem 0.65rem 4px black;
+
+    span {
+      font-size: 10vw;
+      font-family: "league script";
+      text-align: right;
+    }
+  }
+</style>
