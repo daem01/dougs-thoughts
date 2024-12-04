@@ -1,5 +1,5 @@
 # build output
-_site/
+dist/
 # generated types
 .astro/
 
@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# blog template
+src/pages/posts/template/
