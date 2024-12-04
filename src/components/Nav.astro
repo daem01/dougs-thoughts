@@ -4,9 +4,15 @@ const { pageTitle } = Astro.props;
 
 <nav class="nav__header" data-page-title={pageTitle}>
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/blog">Blog</a></li>
+    {
+      pageTitle !== 'Home' && (
+        <li>
+          <a href="/">Home</a>
+        </li>
+      )
+    }
+    <li class="nav-item"><a href="/about">About</a></li>
+    <li class="nav-item"><a href="/blog">Blog</a></li>
   </ul>
 </nav>
 
@@ -71,7 +77,7 @@ const { pageTitle } = Astro.props;
           font-family: 'sriracha';
           text-decoration: none;
           color: rgb(240, 230, 140);
-          font-size: 1.3rem;
+          font-size: 1.7rem;
 
           transition: text-shadow 215ms ease;
 

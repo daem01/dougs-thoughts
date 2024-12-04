@@ -11,26 +11,62 @@ const pageTitle = 'Home';
       <h1 class="hero__text">doug's <span>thoughts</span></h1>
       <Nav pageTitle={pageTitle} />
     </div>
+    <div class="blob"></div>
   </div>
 </Home>
 
 <style>
   .hero {
+    --background-position: center;
+    --background-size: 1rem;
+    --overlay: 0;
+
+    position: relative;
     height: 100%;
     display: grid;
     place-content: center;
     padding: 5rem;
     box-shadow: inset 0 0 5rem 0 black;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(20, 20, 0, 0.3);
+      opacity: var(--overlay);
+      backdrop-filter: blur(1px);
+
+      transition: opacity 150ms ease;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #70809020 50%, #f0ffff20 50%);
+      background-size: var(--background-size);
+      background-repeat: repeat;
+      backdrop-filter: blur(3px);
+      background-position-x: var(--background-position);
+      z-index: -1;
+
+      transition:
+        background-position-x 200ms cubic-bezier(0.165, 0.84, 0.44, 1),
+        background-size 200ms ease;
+    }
   }
 
   .hero-content {
     position: relative;
+    max-width: 1200px;
+    min-width: 320px;
+    width: 100%;
   }
 
   .hero__text {
     --text-color: rgb(240, 230, 140);
 
-    font-size: 25vw;
+    font-size: 18rem;
     font-family: 'josefin sans';
     text-align: right;
     user-select: none;
@@ -39,13 +75,34 @@ const pageTitle = 'Home';
     text-shadow:
       0 0 2rem rgba(240, 230, 140, 0.75),
       2rem 2rem 12px black,
-      -2rem 2rem 4rem black,
-      0.65rem 0.65rem 4px black;
+      -2rem 2rem 4rem #00000050,
+      0.3rem 0.3rem 4px black;
 
     span {
-      font-size: 10vw;
+      font-size: 8rem;
       font-family: 'league script';
       text-align: right;
     }
   }
 </style>
+
+<script>
+  const hero = document.querySelector('.hero');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  document.addEventListener('mousemove', e => {
+    hero?.style.setProperty('--background-position', `${e.clientX / 20}px`);
+  });
+
+  navItems.forEach(item =>
+    item.addEventListener('mouseover', function () {
+      hero.style.setProperty('--overlay', '100%');
+    })
+  );
+
+  navItems.forEach(item =>
+    item.addEventListener('mouseout', function () {
+      hero.style.setProperty('--overlay', '0%');
+    })
+  );
+</script>
