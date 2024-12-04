@@ -88,11 +88,33 @@ const pageTitle = 'Home';
 
 <script>
   const hero = document.querySelector('.hero');
+  const heroText = document.querySelector('.hero__text');
   const navItems = document.querySelectorAll('.nav-item');
+  const blob = document.querySelector('.blob');
 
-  document.addEventListener('mousemove', e => {
-    hero?.style.setProperty('--background-position', `${e.clientX / 20}px`);
-  });
+  const heroLocation = heroText?.getBoundingClientRect();
+  console.log(heroLocation);
+
+  const animation = function (e: any) {
+    hero?.animate(
+      { backgroundPositionX: `${e.clientX / 25}px` },
+      {
+        duration: 2000,
+        easing: 'ease',
+        pseudoElement: '::after',
+      }
+    );
+
+    blob?.animate(
+      { left: `${e.clientX}px`, top: `${e.clientY}px` },
+      {
+        duration: 5000,
+        easing: 'linear',
+      }
+    );
+  };
+
+  document.addEventListener('mousemove', animation);
 
   navItems.forEach(item =>
     item.addEventListener('mouseover', function () {
