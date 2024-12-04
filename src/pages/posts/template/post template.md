@@ -1,8 +1,9 @@
 ---
-title: 
+title:
 author: Doug M.
-tags: 
-pubDate: 
+tags:
+pubDate:
 layout: ../../layouts/Blog.astro
 ---
+
 # title
