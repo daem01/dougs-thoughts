@@ -108,20 +108,21 @@ const pageTitle = 'Home';
   const blob = document.querySelector('.blob');
 
   document.addEventListener('mousemove', e => {
-    hero?.style.setProperty('--background-position', `${e.clientX / 20}px`);
-
-    // blob.style.left = `${e.clientX}px`;
-    // blob.style.top = `${e.clientY}px`;
+    hero?.animate(
+      { backgroundPositionX: `${e.clientX / 25}px` },
+      {
+        duration: 2000,
+        easing: 'ease',
+        pseudoElement: '::after',
+      }
+    );
 
     blob?.animate(
-      [
-        { left: `${e.clientX}px`, top: `${e.clientY}px` },
-        { left: `${e.clientX}px`, top: `${e.clientY}px` },
-      ],
+      { left: `${e.clientX}px`, top: `${e.clientY}px` },
       {
         duration: 5000,
         easing: 'linear',
-        delay: 200,
+        delay: 0,
       }
     );
   });
