@@ -107,7 +107,10 @@ const pageTitle = 'Home';
   const navItems = document.querySelectorAll('.nav-item');
   const blob = document.querySelector('.blob');
 
-  document.addEventListener('mousemove', e => {
+  const heroLocation = heroText?.getBoundingClientRect();
+  console.log(heroLocation);
+
+  const animation = function (e: any) {
     hero?.animate(
       { backgroundPositionX: `${e.clientX / 25}px` },
       {
@@ -122,10 +125,11 @@ const pageTitle = 'Home';
       {
         duration: 5000,
         easing: 'linear',
-        delay: 0,
       }
     );
-  });
+  };
+
+  document.addEventListener('mousemove', animation);
 
   navItems.forEach(item =>
     item.addEventListener('mouseover', function () {
