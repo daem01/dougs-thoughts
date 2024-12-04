@@ -3,6 +3,6 @@ title:
 author: Doug M.
 tags: 
 pubDate: 
-layout: ../../layouts/Blog.astro
+layout: 
 ---
 # title
