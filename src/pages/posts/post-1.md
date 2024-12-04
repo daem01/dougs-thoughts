@@ -9,4 +9,4 @@ author: Doug M.
 ---
 # Hello, World!
 
-This is the *first post* that I have **EVER** made!
+This is the _first post_ that I have **EVER** made!

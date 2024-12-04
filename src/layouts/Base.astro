@@ -1,5 +1,6 @@
 ---
-import Nav from "../components/Nav.astro";
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 const { pageTitle } = Astro.props;
 ---
 
@@ -42,19 +43,20 @@ const { pageTitle } = Astro.props;
       <div>
         <slot />
       </div>
+      <Footer />
     </div>
   </body>
 </html>
 
 <style>
-  body[data-title="Home"] {
+  body[data-title='Home'] {
     background-color: rgb(20, 20, 0);
   }
 
   .wrapper {
     min-height: 100dvh;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto 1fr;
   }
 
   header {
@@ -82,7 +84,7 @@ const { pageTitle } = Astro.props;
   }
 
   html {
-    font-family: "quicksand";
+    font-family: 'quicksand';
   }
 
   .header-icon {

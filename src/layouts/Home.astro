@@ -1,7 +1,6 @@
 ---
 import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-const { frontmatter } = Astro.props;
+const { pageTitle } = Astro.props;
 ---
 
 <html lang="en">
@@ -16,11 +15,11 @@ const { frontmatter } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=League+Script&family=Nothing+You+Could+Do&family=Quicksand:wght@300..700&family=Sarpanch:wght@400;500;600;700;800;900&family=Sriracha&display=swap"
       rel="stylesheet"
     />
-    <title>Doug's Thoughts - {frontmatter.title}</title>
+    <title>Doug's Thoughts - {pageTitle}</title>
   </head>
-  <body>
+  <body data-title={pageTitle}>
     <div class="wrapper">
-      <header>
+      <!-- <header>
         <a href="#" class="header-icon__link" title="Portfolio">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -39,32 +38,30 @@ const { frontmatter } = Astro.props;
         </a>
 
         <Nav />
-      </header>
-
-      <div class="container">
-        <div class="content">
-          <h1>{frontmatter.title}</h1>
-          <h3>Post author: {frontmatter.author}</h3>
-          <p>{frontmatter.pubDate}</p>
-          <br />
-          <hr />
-          <slot />
-        </div>
+      </header> -->
+      <div>
+        <slot />
       </div>
-
-      <Footer />
     </div>
   </body>
 </html>
 
 <style>
-  .wrapper {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    min-height: 100dvh;
+  body[data-title='Home'] {
+    background-color: rgb(20, 20, 0);
   }
 
-  header {
+  .wrapper {
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: 1fr;
+  }
+
+  div {
+    /* background-image: url(../../public/155988588_f59379d4-5b1e-4554-a8ea-f874e6fc7339.svg); */
+  }
+
+  /* header {
     position: sticky;
     top: 0;
     left: 0;
@@ -76,38 +73,7 @@ const { frontmatter } = Astro.props;
     padding-inline: 5rem;
     background-color: azure;
     box-shadow: 0 2px 10px 0 #00000088;
-  }
-
-  .container {
-    position: relative;
-    height: 100%;
-    padding-block: 4rem;
-    background: linear-gradient(to right, mediumaquamarine 50%, azure 50%);
-    background-repeat: repeat;
-    background-size: 1rem;
-    z-index: -1;
-
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-color: rgba(245, 245, 245, 0.3);
-      backdrop-filter: blur(2px);
-      z-index: -1;
-    }
-
-    .content {
-      display: block;
-      margin: 0 auto;
-      max-width: 1200px;
-      width: 100%;
-      min-width: 320px;
-      padding: 2rem;
-      background-color: azure;
-      box-shadow: 3px 5px 1rem 0 #000000aa;
-      border-radius: 10px;
-    }
-  }
+  } */
 </style>
 
 <style is:global>

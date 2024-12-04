@@ -1,20 +1,25 @@
 ---
-import Base from "../layouts/Base.astro";
+import Base from '../layouts/Base.astro';
 
 const identity = {
-  firstName: "Doug",
-  occupation: "Information Technology",
+  firstName: 'Doug',
+  occupation: 'Information Technology',
   hobbies: [
-    "Web Development",
-    "Music Production",
-    "Content Creation",
-    "Golfing",
-    "Snowboarding",
+    'Web Development',
+    'Music Production',
+    'Content Creation',
+    'Golfing',
+    'Snowboarding',
   ],
-  skills: ["HTML", "CSS", "JavaScript", "Astro", "NodeJS"],
+  skills: ['HTML', 'CSS', 'JavaScript', 'Astro', 'NodeJS'],
 };
 ---
 
 <Base pageTitle="About">
   <h1>About</h1>
+  <h3>Hi, my name is {identity.firstName}</h3>
+  <p>My Skills:</p>
+  <ul>
+    {identity.skills.map(skill => <li>{skill}</li>)}
+  </ul>
 </Base>

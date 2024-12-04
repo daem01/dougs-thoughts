@@ -1,8 +1,8 @@
 ---
-
+const { pageTitle } = Astro.props;
 ---
 
-<nav>
+<nav class="nav__header" data-page-title={pageTitle}>
   <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/about">About</a></li>
@@ -11,7 +11,7 @@
 </nav>
 
 <style>
-  nav {
+  .nav__header {
     ul {
       display: flex;
       align-items: center;
@@ -22,7 +22,7 @@
 
         a {
           position: relative;
-          font-family: "sriracha";
+          font-family: 'sriracha';
           text-decoration: none;
           color: black;
           font-size: 1.3rem;
@@ -38,7 +38,7 @@
           }
 
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             bottom: 5px;
             left: 0;
@@ -52,4 +52,62 @@
       }
     }
   }
+
+  .nav__index {
+    position: absolute;
+    bottom: 0;
+    left: 4rem;
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+
+      li {
+        display: block;
+
+        a {
+          position: relative;
+          font-family: 'sriracha';
+          text-decoration: none;
+          color: rgb(240, 230, 140);
+          font-size: 1.3rem;
+
+          transition: text-shadow 215ms ease;
+
+          &:hover {
+            text-shadow: 0 0 2rem rgba(240, 230, 140, 0.75);
+
+            &::after {
+              width: 100%;
+            }
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: rgb(240, 230, 140);
+
+            transition: width 215ms ease;
+          }
+        }
+      }
+    }
+  }
 </style>
+
+<script>
+  const nav = document.querySelector('nav');
+
+  if (nav?.dataset.pageTitle === 'Home') {
+    nav.classList.add('nav__index');
+    nav.classList.remove('nav__header');
+  } else {
+    nav?.classList.add('nav__header');
+    nav?.classList.remove('nav__index');
+  }
+</script>
