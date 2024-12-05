@@ -5,6 +5,8 @@ const { postAuthor } = Astro.props;
 const { postDate } = Astro.props;
 const { postTags } = Astro.props;
 const { postContent } = Astro.props;
+
+const compiledContent = postContent();
 ---
 
 <div class="blog-card">
@@ -17,7 +19,7 @@ const { postContent } = Astro.props;
   </p>
   <hr />
   <!-- <p class="post-content"></p> -->
-  <div class="post-content" set:html={postContent} data-content={postContent} />
+  <div class="post-content" set:html={compiledContent} />
   <a href={postUrl}>Read more...</a>
 </div>
 
