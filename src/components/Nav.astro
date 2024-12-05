@@ -30,13 +30,13 @@ const { pageTitle } = Astro.props;
           position: relative;
           font-family: 'sriracha';
           text-decoration: none;
-          color: black;
+          color: rgb(240, 230, 140);
           font-size: 1.3rem;
 
-          transition: color 150ms ease;
+          /* transition: color 150ms ease; */
 
           &:hover {
-            color: slategray;
+            /* color: slategray; */
 
             &::after {
               width: 100%;
@@ -50,7 +50,8 @@ const { pageTitle } = Astro.props;
             left: 0;
             width: 0;
             height: 2px;
-            background-color: black;
+            border-radius: 1rem;
+            background-color: rgb(240, 230, 140);
 
             transition: width 215ms ease;
           }
@@ -97,6 +98,7 @@ const { pageTitle } = Astro.props;
             left: 0;
             width: 0;
             height: 2px;
+            border-radius: 1rem;
             background-color: rgb(240, 230, 140);
 
             transition: width 215ms ease;

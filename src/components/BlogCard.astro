@@ -1,10 +1,6 @@
 ---
-const { postUrl } = Astro.props;
-const { postTitle } = Astro.props;
-const { postAuthor } = Astro.props;
-const { postDate } = Astro.props;
-const { postTags } = Astro.props;
-const { postContent } = Astro.props;
+const { postUrl, postTitle, postAuthor, postDate, postTags, postContent } =
+  Astro.props;
 
 const compiledContent = postContent();
 ---
@@ -23,7 +19,7 @@ const compiledContent = postContent();
     class="post-content"
     set:html={compiledContent.replace(/\<h1(.*)\>(.*)\<\/h1\>/, '')}
   />
-  <a href={postUrl}>Read more...</a>
+  <a class="btn__read-more" href={postUrl}>Read more...</a>
 </div>
 
 <style>
