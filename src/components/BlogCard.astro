@@ -1,0 +1,37 @@
+---
+const { postUrl } = Astro.props;
+const { postTitle } = Astro.props;
+const { postAuthor } = Astro.props;
+const { postDate } = Astro.props;
+const { postTags } = Astro.props;
+const { postContent } = Astro.props;
+---
+
+<div class="blog-card">
+  <h2 class="post-title">{postTitle}</h2>
+  <p class="post-author">{postAuthor}</p>
+  <span class="post-date">{postDate}</span>
+
+  <p class="post-tags">
+    {postTags}
+  </p>
+  <hr />
+  <!-- <p class="post-content"></p> -->
+  <div class="post-content" set:html={postContent} data-content={postContent} />
+  <a href={postUrl}>Read more...</a>
+</div>
+
+<style>
+  .blog-card {
+    margin: 0 auto 2rem;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 3px 5px 8px 0 #00000077;
+    max-height: min-content;
+
+    .post-content {
+      max-height: 2.5rem;
+      overflow: hidden;
+    }
+  }
+</style>

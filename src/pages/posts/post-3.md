@@ -4,6 +4,6 @@ tags:
   - blog
   - astro
 pubDate: 12-02-2024
-layout: ../../layouts/Blog.astro
+layout: ../../layouts/BlogLayout.astro
 author: Doug M.
 ---

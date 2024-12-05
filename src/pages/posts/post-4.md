@@ -5,7 +5,7 @@ tags:
   - astro
   - documentation
 pubDate: 12-03-2024
-layout: ../../layouts/Blog.astro
+layout: ../../layouts/BlogLayout.astro
 author: Doug M.
 ---
 
