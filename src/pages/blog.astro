@@ -1,7 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 
-const posts = await import.meta.glob('./posts/*.md');
+const allPosts = await Object.entries(
+  import.meta.glob('./posts/*.md', { eager: true })
+);
 ---
 
 <Base pageTitle="Blog">
@@ -9,17 +11,20 @@ const posts = await import.meta.glob('./posts/*.md');
     <h1>Blog</h1>
     <nav>
       <ul>
-        <li><a href="/posts/post-1">First Post!</a></li>
-        <li><a href="/posts/post-2">Second Post!</a></li>
-        <li><a href="/posts/post-3">Third Post!</a></li>
+        {
+          allPosts.map((post: any) => (
+            <li>
+              {
+                <a class="post__link" href={post[1].url}>
+                  {post[1].frontmatter.title}
+                </a>
+              }
+            </li>
+          ))
+        }
       </ul>
     </nav>
   </div>
 </Base>
 
-<script>
-  const posts = await import.meta.glob('./posts/*.md');
-  for (const path in posts) {
-    posts[path]().then(mod => console.log(path, mod));
-  }
-</script>
+<script></script>

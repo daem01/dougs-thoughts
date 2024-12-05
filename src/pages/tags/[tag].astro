@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const allPosts = await Object.entries(
+  import.meta.glob('./posts/*.md', { eager: true })
+);
+
+export async function getStaticPaths() {
+  const allPosts = await Object.entries(
+    import.meta.glob('./posts/*.md', { eager: true })
+  );
+
+  return [
+    { params: { tag: 'astro' }, props: { posts: allPosts } },
+    { params: { tag: 'successes' }, props: { posts: allPosts } },
+    { params: { tag: 'community' }, props: { posts: allPosts } },
+    { params: { tag: 'blogging' }, props: { posts: allPosts } },
+    { params: { tag: 'setbacks' }, props: { posts: allPosts } },
+    { params: { tag: 'learning in public' }, props: { posts: allPosts } },
+  ];
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+const filteredPosts = allPosts.filter((post: any) =>
+  post.frontmatter.tags?.includes(tag)
+);
+---
+
+<Base pageTitle={tag.toUpperCase()}>
+  <p>Posts tagged with: {tag.toUpperCase()}</p>
+  <ul>
+    {
+      allPosts.map((post: any) => (
+        <li>
+          <a href={post[1].url}>{post[1].frontmatter.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Base>
