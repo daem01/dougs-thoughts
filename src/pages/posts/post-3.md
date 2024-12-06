@@ -6,6 +6,7 @@ tags:
 pubDate: 12-02-2024
 layout: ../../layouts/BlogLayout.astro
 author: Doug M.
+description: Today is a new **day**.
 ---
 
 Today is a new **day**.

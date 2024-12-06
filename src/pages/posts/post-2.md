@@ -6,6 +6,8 @@ tags:
 pubDate: 12-02-2024
 layout: ../../layouts/BlogLayout.astro
 author: Doug M.
+description: I've made a second post! This is crazy!
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
 ---
 
 # Would you believe it...

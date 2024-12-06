@@ -7,6 +7,7 @@ tags:
 pubDate: 12-03-2024
 layout: ../../layouts/BlogLayout.astro
 author: Doug M.
+description: Worked on a time with **Joy Hangartner** to get her reconnected to the NAS. She was previously disconnected due to her ethernet port being accidently placed in a VLAN which gave her an IP address that couldn't access the NAS.
 ---
 
 # Docs

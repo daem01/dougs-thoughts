@@ -1,5 +1,5 @@
 ---
-const { postUrl, postTitle, postAuthor, postDate, postTags, postContent } =
+const { postUrl, postTitle, postAuthor, postDate, postTags, postDescription } =
   Astro.props;
 
 const tagsString = String(postTags);
@@ -11,7 +11,7 @@ tagArr.forEach(tag => {
   tagUrlArr.push(`/tags/${tag}`);
 });
 
-const compiledContent = postContent();
+// const compiledContent = postContent();
 ---
 
 <div class="blog-card">
@@ -33,10 +33,12 @@ const compiledContent = postContent();
 
   <hr />
 
-  <div
+  <!-- <div
     class="post-content"
     set:html={compiledContent.replace(/\<h1(.*)\>(.*)\<\/h1\>/, '')}
-  />
+  /> -->
+  <p class="post-content">{postDescription}</p>
+
   <a class="btn__read-more" href={postUrl}>Read more...</a>
 </div>
 
@@ -49,7 +51,6 @@ const compiledContent = postContent();
     border-radius: 10px;
     background-color: azure;
     box-shadow: 3px 5px 8px 0 #00000077;
-    max-height: 400px;
     height: min-content;
 
     .post-author {
@@ -86,6 +87,15 @@ const compiledContent = postContent();
       overflow-wrap: break-word;
       overflow: hidden;
       text-overflow: clip;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn__read-more {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 </style>
