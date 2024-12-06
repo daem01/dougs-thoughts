@@ -68,6 +68,11 @@ const { pageTitle } = Astro.props;
     background-color: rgb(20, 20, 0);
   }
 
+  body[data-title='Blog'] {
+    background: linear-gradient(to right, rgb(20, 20, 0) 50%, black 50%);
+    background-size: 1rem;
+  }
+
   .wrapper {
     min-height: 100dvh;
     display: grid;
@@ -76,6 +81,7 @@ const { pageTitle } = Astro.props;
 
   .container {
     padding-inline: 2rem;
+    margin-bottom: 2rem;
   }
 
   header {
