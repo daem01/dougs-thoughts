@@ -37,7 +37,7 @@ tagArr.forEach(tag => {
     class="post-content"
     set:html={compiledContent.replace(/\<h1(.*)\>(.*)\<\/h1\>/, '')}
   /> -->
-  <p class="post-content">{postDescription}</p>
+  <p class="post-description">{postDescription}</p>
 
   <a class="btn__read-more" href={postUrl}>Read more...</a>
 </div>
@@ -49,7 +49,10 @@ tagArr.forEach(tag => {
     flex-direction: column;
     padding: 1rem;
     border-radius: 10px;
-    background-color: azure;
+    border: 1px solid rgb(240, 230, 140);
+    background-color: rgba(20, 20, 0, 0.3);
+    backdrop-filter: blur(4px);
+    color: azure;
     box-shadow: 3px 5px 8px 0 #00000077;
     height: min-content;
 
@@ -71,10 +74,10 @@ tagArr.forEach(tag => {
 
       .post__tag {
         text-decoration: none;
-        border: 1px solid rgb(20, 20, 0);
+        border: 1px solid azure;
         border-radius: 5px;
         padding: 0 5px;
-        color: rgb(20, 20, 0);
+        color: azure;
         transition: scale 150ms ease;
 
         &:hover {
@@ -83,15 +86,20 @@ tagArr.forEach(tag => {
       }
     }
 
-    .post-content {
+    hr {
+      border-color: rgb(240, 230, 140);
+    }
+
+    .post-description {
       overflow-wrap: break-word;
       overflow: hidden;
       text-overflow: clip;
-      margin-bottom: 0.5rem;
+      margin: 0.5rem 0;
     }
 
     .btn__read-more {
       text-decoration: none;
+      color: azure;
 
       &:hover {
         text-decoration: underline;

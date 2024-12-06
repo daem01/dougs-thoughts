@@ -10,7 +10,7 @@ description: I've made a second post! This is crazy!
             Lorem, ipsum dolor sit amet consectetur adipisicing elit.
 ---
 
-# Would you believe it...
+## Would you believe it...
 
 I've made a second post! This is crazy!
 

@@ -10,7 +10,7 @@ author: Doug M.
 description: Worked on a time with **Joy Hangartner** to get her reconnected to the NAS. She was previously disconnected due to her ethernet port being accidently placed in a VLAN which gave her an IP address that couldn't access the NAS.
 ---
 
-# Docs
+## Docs
 
 1. Worked on a time with **[[Joy Hangartner]]** to get her reconnected to the NAS. She was previously disconnected due to her ethernet port being accidently placed in a VLAN which gave her an IP address that couldn't access the NAS.
    1. I was able to remote into Joy's PC and get her reconnected to the NAS.

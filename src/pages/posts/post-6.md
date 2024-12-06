@@ -1,8 +1,9 @@
 ---
-title: 
+title: Additional thoughts
 author: Doug M.
-tags: 
-pubDate: 
+tags:
+  - diary
+pubDate: 12-06-2024
 layout: ../../layouts/BlogLayout.astro
 description:
 ---
