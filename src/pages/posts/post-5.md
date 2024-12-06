@@ -10,3 +10,5 @@ description: What is actually going on in today's world? Today we seek to uncove
 ---
 
 # title
+
+What is actually going on in today's world? Today we seek to uncover what is going on and why this might be happening. Join in on the conversation.
