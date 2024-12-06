@@ -2,19 +2,37 @@
 const { postUrl, postTitle, postAuthor, postDate, postTags, postContent } =
   Astro.props;
 
+const tagsString = String(postTags);
+const tags = tagsString.split(',');
+const tagArr = Array.from(tags);
+
+const tagUrlArr: any = [];
+tagArr.forEach(tag => {
+  tagUrlArr.push(`/tags/${tag}`);
+});
+
 const compiledContent = postContent();
 ---
 
 <div class="blog-card">
-  <h2 class="post-title">{postTitle}</h2>
+  <h2 class="post-title">
+    {postTitle}
+  </h2>
   <p class="post-author">{postAuthor}</p>
   <span class="post-date">{postDate}</span>
 
   <p class="post-tags">
-    {postTags}
+    {
+      tagArr.map((tag: any, i) => (
+        <a class="post__tag" href={tagUrlArr[i]}>
+          {tag}
+        </a>
+      ))
+    }
   </p>
+
   <hr />
-  <!-- <p class="post-content"></p> -->
+
   <div
     class="post-content"
     set:html={compiledContent.replace(/\<h1(.*)\>(.*)\<\/h1\>/, '')}
@@ -24,15 +42,51 @@ const compiledContent = postContent();
 
 <style>
   .blog-card {
-    margin: 0 auto 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 3px 5px 8px 0 #00000077;
-    max-height: min-content;
+    max-height: 600px;
+    height: min-content;
+
+    .post-author {
+      display: inline;
+    }
+
+    .post-date {
+      position: absolute;
+      display: inline;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .post-tags {
+      display: flex;
+      gap: 0.5rem;
+      margin: 0.5rem 0 1rem;
+
+      .post__tag {
+        text-decoration: none;
+        border: 1px solid rgb(20, 20, 0);
+        border-radius: 5px;
+        padding: 0 5px;
+        color: rgb(20, 20, 0);
+        transition: scale 150ms ease;
+
+        &:hover {
+          scale: 1.1;
+        }
+      }
+    }
 
     .post-content {
-      max-height: 2.5rem;
+      overflow-wrap: break-word;
       overflow: hidden;
+      text-overflow: clip;
     }
   }
 </style>
+
+<script></script>
