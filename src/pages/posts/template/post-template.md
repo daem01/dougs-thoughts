@@ -3,7 +3,7 @@ title:
 author: Doug M.
 tags:
 pubDate:
-layout: ../../layouts/BlogLayout.astro
+layout:
 description:
 ---
 
