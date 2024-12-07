@@ -29,7 +29,7 @@ filterPosts(allPosts);
     <div class="blog-posts">
       <div class="col__left">
         {
-          evenPosts.map((post: any) => (
+          oddPosts.map((post: any) => (
             <BlogCard
               postUrl={post[1].url}
               postTitle={post[1].frontmatter.title}
@@ -43,7 +43,7 @@ filterPosts(allPosts);
       </div>
       <div class="col__right">
         {
-          oddPosts.map((post: any) => (
+          evenPosts.map((post: any) => (
             <BlogCard
               postUrl={post[1].url}
               postTitle={post[1].frontmatter.title}
@@ -99,7 +99,8 @@ filterPosts(allPosts);
     .col__right {
       flex: 1;
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
+      justify-content: flex-end;
       gap: 3rem;
     }
   }
@@ -109,4 +110,26 @@ filterPosts(allPosts);
   // const allPosts = await Object.entries(
   //   import.meta.glob('./posts/*.md', { eager: true })
   // );
+  const allPosts = await Object.entries(
+    import.meta.glob('./posts/*.md', { eager: true })
+  );
+
+  let tags = [];
+
+  allPosts.forEach(post => {
+    const tagsString = String(post[1].frontmatter.tags);
+    const tagsSplit = tagsString.split(',');
+    const tagArr = Array.from(tagsSplit);
+
+    tagArr.forEach(tag => {
+      const obj = {
+        params: { tag: `${tag}` },
+        props: { posts: allPosts },
+      };
+
+      tags.push(obj);
+    });
+  });
+
+  console.log(tags);
 </script>

@@ -10,6 +10,25 @@ export async function getStaticPaths() {
     import.meta.glob('./posts/*.md', { eager: true })
   );
 
+  // let tags: any = [];
+
+  // allPosts.forEach(post => {
+  //   const tagsString = String(post[1].frontmatter.tags);
+  //   const tagsSplit = tagsString.split(',');
+  //   const tagArr = Array.from(tagsSplit);
+
+  //   tagArr.forEach(tag => {
+  //     const obj = {
+  //       params: { tag: `${tag}` },
+  //       props: { posts: allPosts },
+  //     };
+
+  //     tags.push(obj);
+  //   });
+  // });
+
+  // return tags;
+
   return [
     { params: { tag: 'astro' }, props: { posts: allPosts } },
     { params: { tag: 'successes' }, props: { posts: allPosts } },
@@ -22,7 +41,7 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
-const filteredPosts = allPosts.filter((post: any) =>
+const filteredPosts = posts.filter((post: any) =>
   post.frontmatter.tags?.includes(tag)
 );
 ---
@@ -31,7 +50,7 @@ const filteredPosts = allPosts.filter((post: any) =>
   <p>Posts tagged with: {tag.toUpperCase()}</p>
   <ul>
     {
-      allPosts.map((post: any) => (
+      filteredPosts.map((post: any) => (
         <li>
           <a href={post[1].url}>{post[1].frontmatter.title}</a>
         </li>
@@ -39,3 +58,5 @@ const filteredPosts = allPosts.filter((post: any) =>
     }
   </ul>
 </Base>
+
+<script></script>

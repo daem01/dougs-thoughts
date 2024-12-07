@@ -135,13 +135,13 @@ const pageTitle = 'Home';
 
   navItems.forEach(item =>
     item.addEventListener('mouseover', function () {
-      hero.style.setProperty('--overlay', '100%');
+      hero?.style.setProperty('--overlay', '100%');
     })
   );
 
   navItems.forEach(item =>
     item.addEventListener('mouseout', function () {
-      hero.style.setProperty('--overlay', '0%');
+      hero?.style.setProperty('--overlay', '0%');
     })
   );
 </script>
