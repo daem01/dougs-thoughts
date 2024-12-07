@@ -24,4 +24,4 @@ pnpm-debug.log*
 .idea/
 
 # blog template
-src/pages/posts/template/
+src/pages/posts/template/post-template.md
