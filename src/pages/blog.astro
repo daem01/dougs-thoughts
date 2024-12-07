@@ -23,37 +23,39 @@ filterPosts(allPosts);
 ---
 
 <Base pageTitle="Blog">
-  <div class="container">
-    <h1>Doug's Thoughts</h1>
+  <div class="wrapper">
+    <div class="container">
+      <h1>Doug's Thoughts</h1>
 
-    <div class="blog-posts">
-      <div class="col__left">
-        {
-          oddPosts.map((post: any) => (
-            <BlogCard
-              postUrl={post[1].url}
-              postTitle={post[1].frontmatter.title}
-              postAuthor={post[1].frontmatter.author}
-              postDate={post[1].frontmatter.pubDate}
-              postTags={post[1].frontmatter.tags}
-              postDescription={post[1].frontmatter.description}
-            />
-          ))
-        }
-      </div>
-      <div class="col__right">
-        {
-          evenPosts.map((post: any) => (
-            <BlogCard
-              postUrl={post[1].url}
-              postTitle={post[1].frontmatter.title}
-              postAuthor={post[1].frontmatter.author}
-              postDate={post[1].frontmatter.pubDate}
-              postTags={post[1].frontmatter.tags}
-              postDescription={post[1].frontmatter.description}
-            />
-          ))
-        }
+      <div class="blog-posts">
+        <div class="col__left">
+          {
+            oddPosts.map((post: any) => (
+              <BlogCard
+                postUrl={post[1].url}
+                postTitle={post[1].frontmatter.title}
+                postAuthor={post[1].frontmatter.author}
+                postDate={post[1].frontmatter.pubDate}
+                postTags={post[1].frontmatter.tags}
+                postDescription={post[1].frontmatter.description}
+              />
+            ))
+          }
+        </div>
+        <div class="col__right">
+          {
+            evenPosts.map((post: any) => (
+              <BlogCard
+                postUrl={post[1].url}
+                postTitle={post[1].frontmatter.title}
+                postAuthor={post[1].frontmatter.author}
+                postDate={post[1].frontmatter.pubDate}
+                postTags={post[1].frontmatter.tags}
+                postDescription={post[1].frontmatter.description}
+              />
+            ))
+          }
+        </div>
       </div>
 
       <!-- {
@@ -73,11 +75,29 @@ filterPosts(allPosts);
 </Base>
 
 <style>
+  .wrapper {
+    width: 100%;
+    min-height: 100%;
+    box-shadow: inset 0 0 5rem 0 black;
+    padding-inline: 2rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #70809020 50%, #f0ffff20 50%);
+      background-size: 1rem;
+      background-repeat: repeat;
+
+      z-index: -1;
+    }
+  }
+
   .container {
     max-width: 1500px;
     min-width: 320px;
     width: 100%;
-    margin: 0 auto;
+    margin: 0 auto 2rem;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -107,9 +127,6 @@ filterPosts(allPosts);
 </style>
 
 <script>
-  // const allPosts = await Object.entries(
-  //   import.meta.glob('./posts/*.md', { eager: true })
-  // );
   const allPosts = await Object.entries(
     import.meta.glob('./posts/*.md', { eager: true })
   );
