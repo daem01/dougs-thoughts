@@ -28,6 +28,7 @@ const pageTitle = 'Home';
     padding: 5rem;
     box-shadow: inset 0 0 5rem 0 black;
     overflow: hidden;
+    overflow: hidden;
 
     &::before {
       content: '';
@@ -37,7 +38,7 @@ const pageTitle = 'Home';
       opacity: var(--overlay);
       backdrop-filter: blur(1px);
 
-      transition: opacity 150ms ease;
+      transition: opacity 250ms ease;
     }
 
     &::after {
@@ -47,7 +48,7 @@ const pageTitle = 'Home';
       background: linear-gradient(to right, #70809020 50%, #f0ffff20 50%);
       background-size: var(--background-size);
       background-repeat: repeat;
-      backdrop-filter: blur(15rem);
+      backdrop-filter: blur(3px);
       background-position-x: var(--background-position);
       z-index: -1;
 
@@ -66,6 +67,8 @@ const pageTitle = 'Home';
 
   .hero__text {
     --text-color: rgb(240, 230, 140);
+    --text-shadow-x: 1.5rem;
+    --text-shadow-y: 1.5rem;
 
     font-size: 18rem;
     font-family: 'josefin sans';
@@ -75,7 +78,7 @@ const pageTitle = 'Home';
     line-height: 0.5;
     text-shadow:
       0 0 2rem rgba(240, 230, 140, 0.75),
-      2rem 2rem 12px black,
+      var(--text-shadow-x) var(--text-shadow-y) 12px black,
       -2rem 2rem 4rem #00000050,
       0.3rem 0.3rem 4px black;
 
@@ -85,61 +88,26 @@ const pageTitle = 'Home';
       text-align: right;
     }
   }
-
-  .blob {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    width: 50vw;
-    aspect-ratio: 1;
-    border-radius: 100vw;
-    background-color: rgba(240, 230, 140, 0.1);
-    z-index: -2;
-  }
 </style>
 
 <script>
   const hero = document.querySelector('.hero');
   const heroText = document.querySelector('.hero__text');
   const navItems = document.querySelectorAll('.nav-item');
-  const blob = document.querySelector('.blob');
 
-  const heroLocation = heroText?.getBoundingClientRect();
-  console.log(heroLocation);
-
-  const animation = function (e: any) {
-    hero?.animate(
-      { backgroundPositionX: `${e.clientX / 25}px` },
-      {
-        duration: 2000,
-        easing: 'ease',
-        pseudoElement: '::after',
-        fill: 'forwards',
-      }
-    );
-
-    blob?.animate(
-      { left: `${e.clientX}px`, top: `${e.clientY}px` },
-      {
-        duration: 5000,
-        easing: 'linear',
-        fill: 'forwards',
-      }
-    );
-  };
-
-  document.addEventListener('mousemove', animation);
+  document.addEventListener('mousemove', e => {
+    hero?.style.setProperty('--background-position', `${e.clientX / 20}px`);
+  });
 
   navItems.forEach(item =>
     item.addEventListener('mouseover', function () {
-      hero.style.setProperty('--overlay', '100%');
+      hero?.style.setProperty('--overlay', '100%');
     })
   );
 
   navItems.forEach(item =>
     item.addEventListener('mouseout', function () {
-      hero.style.setProperty('--overlay', '0%');
+      hero?.style.setProperty('--overlay', '0%');
     })
   );
 </script>

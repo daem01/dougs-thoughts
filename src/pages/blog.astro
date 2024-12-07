@@ -1,25 +1,152 @@
 ---
 import Base from '../layouts/Base.astro';
+import BlogCard from '../components/BlogCard.astro';
 
-const posts = await import.meta.glob('./posts/*.md');
+const allPosts = await Object.entries(
+  import.meta.glob('./posts/*.md', { eager: true })
+);
+
+let evenPosts: any = [];
+let oddPosts: any = [];
+
+const filterPosts = function (posts: any) {
+  for (let i = 0; i < posts.length; i++) {
+    if (i % 2 === 0) {
+      evenPosts.push(posts[i]);
+    } else {
+      oddPosts.push(posts[i]);
+    }
+  }
+};
+
+filterPosts(allPosts);
 ---
 
 <Base pageTitle="Blog">
-  <div class="container">
-    <h1>Blog</h1>
-    <nav>
-      <ul>
-        <li><a href="/posts/post-1">First Post!</a></li>
-        <li><a href="/posts/post-2">Second Post!</a></li>
-        <li><a href="/posts/post-3">Third Post!</a></li>
-      </ul>
-    </nav>
+  <div class="wrapper">
+    <div class="container">
+      <h1>Doug's Thoughts</h1>
+
+      <div class="blog-posts">
+        <div class="col__left">
+          {
+            oddPosts.map((post: any) => (
+              <BlogCard
+                postUrl={post[1].url}
+                postTitle={post[1].frontmatter.title}
+                postAuthor={post[1].frontmatter.author}
+                postDate={post[1].frontmatter.pubDate}
+                postTags={post[1].frontmatter.tags}
+                postDescription={post[1].frontmatter.description}
+              />
+            ))
+          }
+        </div>
+        <div class="col__right">
+          {
+            evenPosts.map((post: any) => (
+              <BlogCard
+                postUrl={post[1].url}
+                postTitle={post[1].frontmatter.title}
+                postAuthor={post[1].frontmatter.author}
+                postDate={post[1].frontmatter.pubDate}
+                postTags={post[1].frontmatter.tags}
+                postDescription={post[1].frontmatter.description}
+              />
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- {
+        allPosts.map((post: any) => (
+          <BlogCard
+            postUrl={post[1].url}
+            postTitle={post[1].frontmatter.title}
+            postAuthor={post[1].frontmatter.author}
+            postDate={post[1].frontmatter.pubDate}
+            postTags={post[1].frontmatter.tags}
+            postContent={post[1].compiledContent}
+          />
+        ))
+      } -->
+    </div>
   </div>
 </Base>
 
-<script>
-  const posts = await import.meta.glob('./posts/*.md');
-  for (const path in posts) {
-    posts[path]().then(mod => console.log(path, mod));
+<style>
+  .wrapper {
+    width: 100%;
+    min-height: 100%;
+    box-shadow: inset 0 0 5rem 0 black;
+    padding-inline: 2rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #70809020 50%, #f0ffff20 50%);
+      background-size: 1rem;
+      background-repeat: repeat;
+
+      z-index: -1;
+    }
   }
+
+  .container {
+    max-width: 1500px;
+    min-width: 320px;
+    width: 100%;
+    margin: 0 auto 2rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-radius: 0 0 10px 10px;
+    /* box-shadow: 4px 8px 12px 0 #00000077; */
+    /* background-color: azure; */
+
+    h1 {
+      color: rgb(240, 230, 140);
+    }
+  }
+
+  .blog-posts {
+    display: flex;
+    gap: 3rem;
+
+    .col__left,
+    .col__right {
+      flex: 1;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: flex-end;
+      gap: 3rem;
+    }
+  }
+</style>
+
+<script>
+  const allPosts = await Object.entries(
+    import.meta.glob('./posts/*.md', { eager: true })
+  );
+
+  let tags = [];
+
+  allPosts.forEach(post => {
+    const tagsString = String(post[1].frontmatter.tags);
+    const tagsSplit = tagsString.split(',');
+    const tagArr = Array.from(tagsSplit);
+
+    tagArr.forEach(tag => {
+      const obj = {
+        params: { tag: `${tag}` },
+        props: { posts: allPosts },
+      };
+
+      tags.push(obj);
+    });
+  });
+
+  console.log(tags);
 </script>

@@ -4,9 +4,11 @@ tags:
   - blog
   - astro
 pubDate: 12-02-2024
-layout: ../../layouts/Blog.astro
+layout: ../../layouts/BlogLayout.astro
 author: Doug M.
+description:
 ---
-# Hello, World!
+
+## Hello, World!
 
 This is the _first post_ that I have **EVER** made!

@@ -40,16 +40,32 @@ const { pageTitle } = Astro.props;
 
         <Nav />
       </header>
-      <div>
+      <div class="container">
         <slot />
       </div>
       <Footer />
+      <div class="tracker">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="hidden tracker__svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"></path>
+        </svg>
+      </div>
     </div>
   </body>
 </html>
 
 <style>
-  body[data-title='Home'] {
+  body[data-title='Home'],
+  body[data-title='Blog'] {
     background-color: rgb(20, 20, 0);
   }
 
@@ -69,8 +85,10 @@ const { pageTitle } = Astro.props;
     width: 100%;
     height: 50px;
     padding-inline: 5rem;
-    background-color: azure;
+    background-color: rgba(20, 20, 0, 0.75);
+    backdrop-filter: blur(5px);
     box-shadow: 0 2px 10px 0 #00000088;
+    z-index: 999;
   }
 </style>
 
@@ -92,12 +110,89 @@ const { pageTitle } = Astro.props;
   }
 
   .header-icon__link {
-    color: black;
+    color: rgb(240, 230, 140);
 
-    transition: color 150ms ease;
+    /* transition: color 150ms ease;
 
     &:hover {
       color: slategray;
+    } */
+  }
+
+  .tracker {
+    cursor: default;
+    position: absolute;
+    display: grid;
+    place-content: center;
+    width: 30px;
+    aspect-ratio: 1;
+    border-radius: 100vw;
+    background-color: rgb(240, 230, 140);
+    translate: -50% -50%;
+    opacity: 90%;
+    pointer-events: none;
+
+    box-shadow:
+      0 0 2rem 0 rgba(240, 230, 140, 1),
+      2px 2px 8px 0 #00000055;
+
+    .tracker__svg {
+      width: 2rem;
     }
   }
+
+  .hidden {
+    display: none;
+  }
 </style>
+
+<script>
+  const container = document.querySelector('.container');
+  const tracker = document.querySelector('.tracker');
+  const trackerSVG = document.querySelector('.tracker__svg');
+  const links = document.querySelectorAll('a');
+
+  container?.addEventListener('mousemove', e => {
+    tracker?.animate(
+      {
+        left: `${e.clientX + window.scrollX}px`,
+        top: `${e.clientY + window.scrollY}px`,
+      },
+      {
+        duration: 1000,
+        easing: 'ease-in',
+        fill: 'forwards',
+      }
+    );
+  });
+
+  links.forEach(link =>
+    link.addEventListener('mouseover', () => {
+      trackerSVG?.classList.remove('hidden');
+
+      tracker?.animate(
+        { width: '55px', opacity: '50%' },
+        {
+          duration: 150,
+          easing: 'ease',
+          fill: 'forwards',
+        }
+      );
+    })
+  );
+
+  links.forEach(link =>
+    link.addEventListener('mouseout', () => {
+      trackerSVG?.classList.add('hidden');
+
+      tracker?.animate(
+        { width: '30px', opacity: '90%' },
+        {
+          duration: 150,
+          easing: 'ease',
+          fill: 'forwards',
+        }
+      );
+    })
+  );
+</script>
