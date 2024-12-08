@@ -1,45 +1,16 @@
 ---
-import Nav from '../components/Nav.astro';
+import CommonHead from '../components/CommonHead.astro';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 const { frontmatter } = Astro.props;
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=League+Script&family=Nothing+You+Could+Do&family=Quicksand:wght@300..700&family=Sarpanch:wght@400;500;600;700;800;900&family=Sriracha&display=swap"
-      rel="stylesheet"
-    />
-    <title>Doug's Thoughts - {frontmatter.title}</title>
-  </head>
+  <CommonHead pageTitle={frontmatter.title} />
+
   <body>
     <div class="wrapper">
-      <header>
-        <a href="#" class="header-icon__link" title="Portfolio">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="header-icon"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 0 1-1.125-1.125v-3.75ZM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-8.25ZM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-2.25Z"
-            ></path>
-          </svg>
-        </a>
-
-        <Nav />
-      </header>
+      <Header />
 
       <div class="container">
         <div class="content">
@@ -86,6 +57,7 @@ const { frontmatter } = Astro.props;
     background: linear-gradient(to right, mediumaquamarine 50%, azure 50%);
     background-repeat: repeat;
     background-size: 1rem;
+    padding-inline: 4rem;
 
     z-index: -1;
 
