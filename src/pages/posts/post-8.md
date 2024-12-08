@@ -1,0 +1,10 @@
+---
+title: 8th post
+author: Doug M.
+tags:
+  - blog
+  - astro
+pubDate: 12-07-2024
+layout: ../../layouts/BlogLayout.astro
+description: This is the 8th post that I have ever made. This was made to test the masonry layout. And this has confirmed that I am a master at this craft once and for all... again.
+---

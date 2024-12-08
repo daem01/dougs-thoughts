@@ -44,34 +44,6 @@ const { pageTitle } = Astro.props;
     display: grid;
     grid-template-rows: auto 1fr;
   }
-</style>
-
-<style is:global>
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  html {
-    font-family: 'quicksand';
-  }
-
-  .header-icon {
-    width: 2.5rem;
-  }
-
-  .header-icon__link {
-    color: rgb(240, 230, 140);
-
-    /* transition: color 150ms ease;
-
-    &:hover {
-      color: slategray;
-    } */
-  }
 
   .tracker {
     cursor: default;
@@ -93,6 +65,20 @@ const { pageTitle } = Astro.props;
     .tracker__svg {
       width: 2rem;
     }
+  }
+</style>
+
+<style is:global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-family: 'quicksand';
   }
 
   .hidden {

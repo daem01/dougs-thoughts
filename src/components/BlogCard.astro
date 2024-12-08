@@ -2,13 +2,12 @@
 const { postUrl, postTitle, postAuthor, postDate, postTags, postDescription } =
   Astro.props;
 
-const tagsString = String(postTags);
-const tags = tagsString.split(',');
-const tagArr = Array.from(tags);
+const tags = String(postTags);
+const arrTags = Array.from(tags.split(','));
 
-const tagUrlArr: any = [];
-tagArr.forEach(tag => {
-  tagUrlArr.push(`/tags/${tag}`);
+const arrTagUrls: any = [];
+arrTags.forEach(tag => {
+  arrTagUrls.push(`/tags/${tag}`);
 });
 
 // const compiledContent = postContent();
@@ -23,8 +22,8 @@ tagArr.forEach(tag => {
 
   <p class="post-tags">
     {
-      tagArr.map((tag: any, i) => (
-        <a class="post__tag" href={tagUrlArr[i]}>
+      arrTags.map((tag: any, i) => (
+        <a class="post__tag" href={arrTagUrls[i]}>
           {tag}
         </a>
       ))
@@ -33,12 +32,7 @@ tagArr.forEach(tag => {
 
   <hr />
 
-  <!-- <div
-    class="post-content"
-    set:html={compiledContent.replace(/\<h1(.*)\>(.*)\<\/h1\>/, '')}
-  /> -->
   <p class="post-description">{postDescription}</p>
-
   <a class="btn__read-more" href={postUrl}>Read more...</a>
 </div>
 
@@ -51,20 +45,21 @@ tagArr.forEach(tag => {
     border-radius: 10px;
     border: 1px solid rgb(240, 230, 140);
     background-color: rgba(20, 20, 0, 0.3);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(5px);
     color: azure;
-    box-shadow: 3px 5px 8px 0 #00000077;
-    height: min-content;
+    box-shadow: 5px 5px 10px 0 #000000aa;
 
+    .post-title,
     .post-author {
-      display: inline;
+      font-family: 'sriracha';
+      line-height: 1.1;
     }
 
     .post-date {
       position: absolute;
-      display: inline;
       top: 1rem;
       right: 1rem;
+      font-family: 'josefin sans';
     }
 
     .post-tags {
@@ -100,6 +95,7 @@ tagArr.forEach(tag => {
     .btn__read-more {
       text-decoration: none;
       color: rgb(240, 230, 140);
+      font-family: 'nothing you could do';
 
       &:hover {
         text-decoration: underline;
