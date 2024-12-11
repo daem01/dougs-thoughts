@@ -1,3 +1,5 @@
+Test site to learn some of the fundamentals behind the Astro architecture.
+
 # Astro Starter Kit: Minimal
 
 ```sh
